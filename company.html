@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Hire smart teenagers for your company projects on Funngro." />
+  <title>Funngro | Hire Talent 2.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root{
+      --bg: #07101f;
+      --bg-2: #0b1630;
+      --card: rgba(15, 23, 42, 0.72);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --green: #28f28c;
+      --green-2: #00d977;
+      --shadow: 0 18px 60px rgba(0,0,0,.38);
+      --radius: 24px;
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family:"Inter", system-ui, -apple-system, Segoe UI, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(40,242,140,.12), transparent 25%),
+        radial-gradient(circle at top right, rgba(56,189,248,.08), transparent 22%),
+        linear-gradient(180deg, var(--bg) 0%, #08111f 40%, #060b14 100%);
+      color:var(--text);
+      overflow-x:hidden;
+    }
+
+    .bg-blob{
+      position:fixed;
+      width:320px;
+      height:320px;
+      border-radius:50%;
+      filter: blur(50px);
+      opacity:.22;
+      pointer-events:none;
+      z-index:0;
+      animation: drift 12s ease-in-out infinite alternate;
+    }
+    .blob-1{ top:40px; left:-80px; background:#28f28c; }
+    .blob-2{ top:220px; right:-100px; background:#38bdf8; animation-delay:-4s; }
+    .blob-3{ bottom:-100px; left:20%; background:#8b5cf6; animation-delay:-7s; }
+
+    @keyframes drift{
+      from{ transform: translateY(0) scale(1); }
+      to{ transform: translateY(30px) scale(1.08); }
+    }
+
+    .page{
+      position:relative;
+      z-index:1;
+    }
+
+    nav{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:16px 22px;
+      background:rgba(6, 11, 20, .72);
+      backdrop-filter: blur(16px);
+      border-bottom:1px solid rgba(148,163,184,.12);
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      text-decoration:none;
+      color:var(--text);
+      font-weight:900;
+      letter-spacing:.2px;
+      font-size:1.15rem;
+      position:relative;
+      white-space:nowrap;
+    }
+
+    .logo-mark{
+      width:38px;
+      height:38px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      background:
+        linear-gradient(135deg, rgba(40,242,140,.22), rgba(40,242,140,.05)),
+        rgba(15,23,42,.8);
+      border:1px solid rgba(40,242,140,.25);
+      position:relative;
+      overflow:hidden;
+      animation: pulseGlow 2.6s ease-in-out infinite;
+    }
+
+    .logo-mark::before{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.28), transparent 55%);
+      transform: rotate(25deg) translateX(-110%);
+      animation: shine 3.8s linear infinite;
+    }
+
+    .logo-mark i{
+      color:var(--green);
+      font-size:1rem;
+      animation: floatIcon 2.4s ease-in-out infinite;
+      text-shadow: 0 0 16px rgba(40,242,140,.55);
+    }
+
+    .logo span{
+      color:var(--green);
+      text-shadow: 0 0 16px rgba(40,242,140,.25);
+    }
+
+    .logo-badge{
+      position:absolute;
+      right:-12px;
+      top:-9px;
+      background:var(--green);
+      color:#04110a;
+      font-size:.62rem;
+      font-weight:900;
+      border-radius:999px;
+      padding:3px 7px;
+      box-shadow: 0 0 22px rgba(40,242,140,.35);
+      animation:bounce 2.2s ease-in-out infinite;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .nav-links a{
+      text-decoration:none;
+      color:var(--muted);
+      font-weight:700;
+      font-size:.95rem;
+      padding:10px 14px;
+      border-radius:999px;
+      transition:.25s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a.active{
+      color:var(--text);
+      background:rgba(40,242,140,.1);
+      box-shadow: inset 0 0 0 1px rgba(40,242,140,.18);
+    }
+
+    .hero{
+      max-width:1200px;
+      margin:0 auto;
+      padding:46px 22px 20px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .hero-copy{
+      animation: fadeUp .9s ease both;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:9px 14px;
+      border-radius:999px;
+      background: rgba(40,242,140,.08);
+      border:1px solid rgba(40,242,140,.16);
+      color: #bff9d8;
+      font-weight:700;
+      font-size:.88rem;
+      margin-bottom:18px;
+    }
+
+    .hero h1{
+      margin:0;
+      font-size: clamp(2.3rem, 5vw, 4.6rem);
+      line-height:.96;
+      letter-spacing:-.04em;
+    }
+
+    .hero h1 .grad{
+      background: linear-gradient(90deg, #ffffff 0%, #dfffea 40%, var(--green) 100%);
+      -webkit-background-clip:text;
+      background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .hero p{
+      margin:18px 0 28px;
+      color:var(--muted);
+      font-size:1.08rem;
+      max-width:60ch;
+      line-height:1.7;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      text-decoration:none;
+      border-radius:999px;
+      padding:14px 20px;
+      font-weight:800;
+      transition: .25s ease;
+      border:1px solid transparent;
+    }
+
+    .btn-primary{
+      background: linear-gradient(135deg, var(--green), var(--green-2));
+      color:#04110a;
+      box-shadow: 0 18px 40px rgba(40,242,140,.20);
+    }
+    .btn-primary:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 22px 54px rgba(40,242,140,.28);
+    }
+
+    .btn-secondary{
+      background: rgba(15,23,42,.72);
+      color: var(--text);
+      border-color: rgba(148,163,184,.16);
+    }
+    .btn-secondary:hover{
+      transform: translateY(-2px);
+      border-color: rgba(40,242,140,.28);
+    }
+
+    .hero-panel{
+      position:relative;
+      min-height:560px;
+      display:grid;
+      place-items:center;
+      animation: fadeUp 1s ease both;
+      animation-delay:.08s;
+    }
+
+    .dashboard{
+      width:min(100%, 520px);
+      background: linear-gradient(180deg, rgba(17,24,39,.9), rgba(8,15,27,.85));
+      border:1px solid rgba(148,163,184,.14);
+      border-radius: 32px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+
+    .dash-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 20px;
+      border-bottom:1px solid rgba(148,163,184,.12);
+      background: rgba(255,255,255,.02);
+    }
+
+    .dash-title{
+      font-weight:900;
+      letter-spacing:-.02em;
+    }
+
+    .dash-badge{
+      padding:8px 10px;
+      border-radius:999px;
+      background: rgba(40,242,140,.12);
+      color: #c8ffe0;
+      border:1px solid rgba(40,242,140,.18);
+      font-weight:800;
+      font-size:.8rem;
+    }
+
+    .dash-body{
+      padding:20px;
+      display:grid;
+      gap:16px;
+    }
+
+    .stats-grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+    }
+
+    .stat{
+      background: rgba(15,23,42,.76);
+      border:1px solid rgba(148,163,184,.12);
+      border-radius:18px;
+      padding:14px;
+    }
+
+    .stat strong{
+      display:block;
+      font-size:1.1rem;
+      margin-bottom:5px;
+    }
+
+    .stat span{
+      color:var(--muted);
+      font-size:.82rem;
+    }
+
+    .project-card{
+      border-radius:22px;
+      min-height:160px;
+      background:
+        linear-gradient(135deg, rgba(40,242,140,.14), rgba(56,189,248,.10)),
+        url("https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1100&q=80") center/cover;
+      position:relative;
+      overflow:hidden;
+      border:1px solid rgba(148,163,184,.12);
+    }
+
+    .project-card::after{
+      content:"Sample campaign preview";
+      position:absolute;
+      left:14px;
+      right:14px;
+      bottom:14px;
+      border-radius:16px;
+      background: rgba(5,8,22,.74);
+      backdrop-filter: blur(10px);
+      padding:12px 14px;
+      font-weight:800;
+      color:#eafff4;
+      font-size:.9rem;
+    }
+
+    .list{
+      display:grid;
+      gap:12px;
+    }
+
+    .list-item{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      align-items:center;
+      padding:14px 16px;
+      background: rgba(15,23,42,.76);
+      border:1px solid rgba(148,163,184,.12);
+      border-radius:18px;
+    }
+
+    .list-item .left{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+
+    .mini-avatar,
+    .img-placeholder{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      background:
+        linear-gradient(135deg, rgba(40,242,140,.18), rgba(56,189,248,.10)),
+        rgba(17,24,39,.9);
+      border:1px solid rgba(40,242,140,.16);
+      color:#d6ffe9;
+      font-size:.7rem;
+      font-weight:800;
+      text-align:center;
+      line-height:1.1;
+      position:relative;
+    }
+
+    .img-placeholder::after{
+      content:"image";
+      position:absolute;
+      bottom:4px;
+      right:6px;
+      font-size:.58rem;
+      opacity:.65;
+    }
+
+    .list-item strong{
+      display:block;
+      margin-bottom:3px;
+    }
+
+    .list-item small{
+      color:var(--muted);
+    }
+
+    .pill{
+      padding:8px 10px;
+      border-radius:999px;
+      background: rgba(40,242,140,.12);
+      border:1px solid rgba(40,242,140,.18);
+      color:#c8ffe0;
+      font-size:.78rem;
+      font-weight:900;
+      white-space:nowrap;
+    }
+
+    .section{
+      max-width:1200px;
+      margin:0 auto;
+      padding:24px 22px 72px;
+      position:relative;
+      z-index:1;
+    }
+
+    .section-title{
+      text-align:center;
+      margin:30px 0 14px;
+      font-size: clamp(1.7rem, 4vw, 2.6rem);
+      letter-spacing:-.03em;
+    }
+
+    .section-title span{
+      color:var(--green);
+    }
+
+    .section-sub{
+      text-align:center;
+      color:var(--muted);
+      max-width:800px;
+      margin:0 auto 28px;
+      line-height:1.7;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap:18px;
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(17,24,39,.86), rgba(15,23,42,.70));
+      border:1px solid rgba(148,163,184,.12);
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow: var(--shadow);
+      transition: .28s ease;
+      position:relative;
+      overflow:hidden;
+      min-height: 270px;
+      animation: fadeUp .7s ease both;
+    }
+
+    .card:hover{
+      transform: translateY(-7px);
+      border-color: rgba(40,242,140,.28);
+      box-shadow: 0 20px 70px rgba(0,0,0,.45);
+    }
+
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:auto -60px -60px auto;
+      width:160px;
+      height:160px;
+      border-radius:50%;
+      background: radial-gradient(circle, rgba(40,242,140,.16), transparent 70%);
+      pointer-events:none;
+    }
+
+    .card-icon{
+      width:54px;
+      height:54px;
+      border-radius:18px;
+      display:grid;
+      place-items:center;
+      background: rgba(40,242,140,.11);
+      color:var(--green);
+      font-size:1.2rem;
+      border:1px solid rgba(40,242,140,.16);
+      margin-bottom:16px;
+      animation: pulseSoft 2.8s ease-in-out infinite;
+    }
+
+    .card h3{
+      margin:0 0 10px;
+      font-size:1.2rem;
+      letter-spacing:-.02em;
+    }
+
+    .card p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:.98rem;
+    }
+
+    .card-media{
+      margin-top:16px;
+      height:110px;
+      border-radius:18px;
+      border:1px solid rgba(148,163,184,.12);
+      overflow:hidden;
+      background:
+        linear-gradient(135deg, rgba(40,242,140,.10), rgba(56,189,248,.08)),
+        rgba(2,6,23,.7);
+      display:grid;
+      place-items:center;
+      color:#d8fff0;
+      font-weight:800;
+      font-size:.9rem;
+      position:relative;
+    }
+
+    .card-media::after{
+      content:"image placeholder";
+      position:absolute;
+      bottom:10px;
+      left:12px;
+      font-size:.72rem;
+      opacity:.75;
+      font-weight:700;
+    }
+
+    .card-media.img-1{ background: url("https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1000&q=80") center/cover; }
+    .card-media.img-2{ background: url("https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1000&q=80") center/cover; }
+    .card-media.img-3{ background: url("https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1000&q=80") center/cover; }
+
+    .feature-strip{
+      margin-top:26px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .chip{
+      padding:10px 14px;
+      border-radius:999px;
+      background: rgba(15,23,42,.62);
+      border:1px solid rgba(148,163,184,.12);
+      color:#dbeafe;
+      font-weight:700;
+      font-size:.88rem;
+      animation: floatChip 5s ease-in-out infinite;
+    }
+
+    .chip:nth-child(2){ animation-delay:-1s; }
+    .chip:nth-child(3){ animation-delay:-2s; }
+    .chip:nth-child(4){ animation-delay:-3s; }
+
+    .cta-wrap{
+      margin-top:28px;
+      text-align:center;
+    }
+
+    .btn-large{
+      font-size:1rem;
+      padding:16px 26px;
+    }
+
+    footer{
+      padding:24px 22px 40px;
+      text-align:center;
+      color:var(--muted);
+      font-size:.92rem;
+    }
+
+    @keyframes fadeUp{
+      from{ opacity:0; transform: translateY(20px); }
+      to{ opacity:1; transform: translateY(0); }
+    }
+    @keyframes pulseGlow{
+      0%,100%{ box-shadow: 0 0 0 0 rgba(40,242,140,.08); }
+      50%{ box-shadow: 0 0 0 10px rgba(40,242,140,.02); }
+    }
+    @keyframes shine{
+      0%{ transform: rotate(25deg) translateX(-120%); }
+      35%{ transform: rotate(25deg) translateX(190%); }
+      100%{ transform: rotate(25deg) translateX(190%); }
+    }
+    @keyframes floatIcon{
+      0%,100%{ transform: translateY(0) rotate(0deg); }
+      50%{ transform: translateY(-2px) rotate(-6deg); }
+    }
+    @keyframes bounce{
+      0%,100%{ transform: translateY(0); }
+      50%{ transform: translateY(-3px); }
+    }
+    @keyframes pulseSoft{
+      0%,100%{ box-shadow: 0 0 0 0 rgba(40,242,140,.07); }
+      50%{ box-shadow: 0 0 0 10px rgba(40,242,140,.01); }
+    }
+    @keyframes floatChip{
+      0%,100%{ transform: translateY(0); }
+      50%{ transform: translateY(-7px); }
+    }
+
+    .d1{ animation-delay:.06s; }
+    .d2{ animation-delay:.12s; }
+    .d3{ animation-delay:.18s; }
+
+    @media (max-width: 980px){
+      .hero{
+        grid-template-columns:1fr;
+        padding-top:24px;
+      }
+      .hero-panel{
+        min-height: 500px;
+      }
+      .grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 640px){
+      nav{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+      .nav-links{
+        width:100%;
+      }
+      .nav-links a{
+        padding:9px 12px;
+      }
+      .hero h1{
+        font-size:2.35rem;
+      }
+      .stats-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *, *::before, *::after{
+        animation:none !important;
+        transition:none !important;
+        scroll-behavior:auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-blob blob-1"></div>
+  <div class="bg-blob blob-2"></div>
+  <div class="bg-blob blob-3"></div>
+
+  <div class="page">
+    <nav>
+      <a href="index.html" class="logo">
+        <span class="logo-mark"><i class="fa-solid fa-briefcase"></i></span>
+        Funngro<span>.</span>
+        <span class="logo-badge">2.0</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">For Teens</a>
+        <a href="company.html" class="active">For Companies</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><i class="fa-solid fa-sparkles"></i> Hire young creators with real energy</div>
+        <h1><span class="grad">Hire smart talent</span> without the usual hassle</h1>
+        <p>
+          Get your projects done by bright Gen-Z minds who bring speed, fresh ideas, and modern internet culture awareness to the work.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Post a Project</a>
+          <a href="#" class="btn btn-secondary"><i class="fa-solid fa-circle-play"></i> See How It Works</a>
+        </div>
+      </div>
+
+      <div class="hero-panel">
+        <div class="dashboard">
+          <div class="dash-top">
+            <div class="dash-title">Company Dashboard</div>
+            <div class="dash-badge">Verified Talent Pool</div>
+          </div>
+
+          <div class="dash-body">
+            <div class="stats-grid">
+              <div class="stat">
+                <strong>Fast</strong>
+                <span>Shorter hiring cycle</span>
+              </div>
+              <div class="stat">
+                <strong>Fresh</strong>
+                <span>Creative perspectives</span>
+              </div>
+              <div class="stat">
+                <strong>Smart</strong>
+                <span>Skill-based matching</span>
+              </div>
+            </div>
+
+            <div class="project-card"></div>
+
+            <div class="list">
+              <div class="list-item">
+                <div class="left">
+                  <div class="mini-avatar">TG</div>
+                  <div>
+                    <strong>Social media design</strong>
+                    <small>Best for startups and brands</small>
+                  </div>
+                </div>
+                <div class="pill">Matched</div>
+              </div>
+
+              <div class="list-item">
+                <div class="left">
+                  <div class="img-placeholder">img</div>
+                  <div>
+                    <strong>Website helper</strong>
+                    <small>Support for quick tasks</small>
+                  </div>
+                </div>
+                <div class="pill">Ready</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Grow your business with <span>Teens</span></h2>
+      <p class="section-sub">
+        A polished hiring experience built for modern teams that want efficiency, creativity, and a simple workflow.
+      </p>
+
+      <div class="grid">
+        <article class="card d1">
+          <div class="card-icon"><i class="fa-solid fa-bolt"></i></div>
+          <h3>Fast & Cost-Effective</h3>
+          <p>Save time and budget by hiring young contributors for project-based work and quick execution.</p>
+          <div class="card-media img-1"></div>
+        </article>
+
+        <article class="card d2">
+          <div class="card-icon"><i class="fa-solid fa-lightbulb"></i></div>
+          <h3>Fresh Perspectives</h3>
+          <p>Bring in creators who understand trends, internet culture, and what modern users respond to.</p>
+          <div class="card-media img-2"></div>
+        </article>
+
+        <article class="card d3">
+          <div class="card-icon"><i class="fa-solid fa-tags"></i></div>
+          <h3>12+ Categories</h3>
+          <p>Hire for web development, design, writing, social content, research, and more.</p>
+          <div class="card-media img-3"></div>
+        </article>
+      </div>
+
+      <div class="feature-strip">
+        <div class="chip">Skill-based matching</div>
+        <div class="chip">Easy project posting</div>
+        <div class="chip">Portfolio-first talent</div>
+        <div class="chip">Modern UI workflow</div>
+      </div>
+
+      <div class="cta-wrap">
+        <a href="#" class="btn btn-primary btn-large"><i class="fa-solid fa-paper-plane"></i> Post a Project</a>
+      </div>
+    </section>
+
+    <footer>
+      Built for companies that want speed, creativity, and a smarter hiring experience
+    </footer>
+  </div>
+</body>
+</html>
